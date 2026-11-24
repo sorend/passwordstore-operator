@@ -1,0 +1,6 @@
+## Append samples of your project ##
+resources:
+- passwordstore_v1alpha1_passwordstore.yaml
+- passwordstore_v1alpha1_passwordstoresecret.yaml
+- passwordstore_v1alpha1_clusterpasswordstore.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples

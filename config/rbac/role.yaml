@@ -1,0 +1,57 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - events.k8s.io
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+- apiGroups:
+  - passwordstore.k8s.sorend.github.com
+  resources:
+  - clusterpasswordstores
+  - passwordstores
+  - passwordstoresecrets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - passwordstore.k8s.sorend.github.com
+  resources:
+  - clusterpasswordstores/status
+  - passwordstores/status
+  - passwordstoresecrets/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - passwordstore.k8s.sorend.github.com
+  resources:
+  - passwordstoresecrets/finalizers
+  verbs:
+  - update

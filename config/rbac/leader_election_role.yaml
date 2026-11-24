@@ -1,0 +1,26 @@
+# permissions to do leader election.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    app.kubernetes.io/name: passwordstore-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: leader-election-role
+rules:
+# Leader election takes a lease, and renews it. It does not need more than that: the operator does not
+# use ConfigMaps for it, and a lease is released by letting it expire.
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - get
+  - create
+  - update
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
