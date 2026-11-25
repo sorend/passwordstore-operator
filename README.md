@@ -859,6 +859,11 @@ commit. If they pass, it builds the image for `linux/amd64` and `linux/arm64`, p
 GitHub release with `install.yaml` for that image. Pull requests and pushes to `main` run the same checks
 and build the image without pushing it.
 
+GitHub creates the package of the image as private. After the first release, open the package (it is
+listed under Packages on the page of the repository), go to its settings, and under Danger Zone change
+the visibility to Public. A cluster pulls the image without credentials, so until you do, the pods of
+`install.yaml` stay in `ImagePullBackOff`. A public package cannot be made private again.
+
 Whoever can push a tag that starts with `v` publishes a release, so protect those tags in the settings
 of the repository (a tag ruleset), and let only the people who release create them.
 
